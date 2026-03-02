@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="O Caramuru - Poema épico de Santa Rita Durão. Apresentação escolar completa sobre a obra literária do Brasil colonial.">
+    <title>O Caramuru - Apresentação Escolar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== RESET E BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4a843;
+            --gold-light: #f0d78c;
+            --gold-dark: #a67c00;
+            --brown-dark: #2c1810;
+            --brown: #5c3d2e;
+            --beige: #f5e6c8;
+            --black: #0a0503;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            font-family: 'Crimson Text', Georgia, serif;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--brown-dark);
+            color: var(--beige);
+        }
+
+        /* ==================== SPLASH SCREEN ==================== */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        #splash.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Ondas animadas */
+        .ocean {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        .ocean.visible {
+            opacity: 1;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(to top, 
+                #0a1628 0%, 
+                #1a3a5c 20%, 
+                #2d5a7b 40%, 
+                #3d7a9c 60%, 
+                transparent 100%
+            );
+            animation: wave 8s ease-in-out infinite;
+            transform-origin: bottom;
+        }
+
+        .wave:nth-child(2) {
+            opacity: 0.6;
+            animation-delay: -2s;
+            animation-duration: 10s;
+        }
+
+        .wave:nth-child(3) {
+            opacity: 0.4;
+            animation-delay: -4s;
+            animation-duration: 12s;
+            background: linear-gradient(to top, 
+                #0a1628 0%, 
+                #1a3a5c 30%, 
+                transparent 100%
+            );
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: translateX(0) scaleY(1); }
+            25% { transform: translateX(-5%) scaleY(1.1); }
+            50% { transform: translateX(-10%) scaleY(1); }
+            75% { transform: translateX(-5%) scaleY(0.9); }
+        }
+
+        /* Sol */
+        .sun {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, 
+                #FFD700 0%, 
+                #FFA500 50%, 
+                transparent 70%
+            );
+            border-radius: 50%;
+            box-shadow: 
+                0 0 40px rgba(255, 215, 0, 0.6),
+                0 0 80px rgba(255, 165, 0, 0.4);
+            animation: sunGlow 4s ease-in-out infinite alternate;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .sun.visible {
+            opacity: 1;
+        }
+
+        @keyframes sunGlow {
+            0% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 165, 0, 0.4); }
+            100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.8), 0 0 100px rgba(255, 165, 0, 0.6); }
+        }
+
+        /* ===== TÍTULO ===== */
+        .splash-title {
+            position: relative;
+            z-index: 20;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
+        }
+
+        .splash-title.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .splash-title h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 
+                0 0 10px var(--gold-light),
+                0 0 20px var(--gold),
+                0 0 40px var(--gold-dark),
+                0 0 60px rgba(212, 168, 67, 0.5),
+                2px 2px 4px var(--black);
+            animation: glow 2s ease-in-out infinite alternate;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px var(--gold-light), 0 0 20px var(--gold), 0 0 40px var(--gold-dark), 2px 2px 4px var(--black); }
+            100% { text-shadow: 0 0 20px var(--gold-light), 0 0 40px var(--gold), 0 0 80px var(--gold-dark), 0 0 100px rgba(212, 168, 67, 0.8), 2px 2px 4px var(--black); }
+        }
+
+        .splash-title .author {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            color: var(--beige);
+            margin-top: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease 0.5s;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+        }
+
+        .splash-title.visible .author {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Partículas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 15;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { opacity: 0; transform: translateY(-10px) scale(0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(100vh) scale(1); }
+        }
+
+        /* Botão Entrar */
+        .enter-btn {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 25;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .enter-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .enter-btn button {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            border: 2px solid var(--gold-light);
+            color: var(--brown-dark);
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(212, 168, 67, 0.5);
+        }
+
+        .enter-btn button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(212, 168, 67, 0.8);
+        }
+
+        /* ==================== MENU ==================== */
+        #menu {
+            display: none;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #menu.active { display: block; }
+
+        .menu-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 120%;
+            height: 120%;
+            background: url('mapa_brasil.png') center/cover no-repeat, linear-gradient(135deg, var(--brown-dark), var(--brown));
+            opacity: 0.15;
+            z-index: 0;
+            animation: parallax 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes parallax {
+            0% { transform: translate(0, 0) scale(1.1); }
+            100% { transform: translate(-5%, -5%) scale(1.2); }
+        }
+
+        .menu-content {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .menu-header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--gold);
+            text-shadow: 2px 2px 4px var(--black);
+            margin-bottom: 10px;
+        }
+
+        .menu-header p {
+            font-size: 1.2rem;
+            color: var(--beige);
+            opacity: 0.8;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(92, 61, 46, 0.95), rgba(44, 24, 16, 0.98));
+            border: 2px solid var(--gold-dark);
+            border-radius: 15px;
+            padding: 30px 25px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(212, 168, 67, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before { left: 100%; }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(212, 168, 67, 0.1);
+            border-radius: 10px;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 40px rgba(212, 168, 67, 0.2),
+                inset 0 1px 0 rgba(212, 168, 67, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--beige);
+            opacity: 0.8;
+        }
+
+        .card-number {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold-dark);
+            opacity: 0.3;
+        }
+
+        .presentation-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .presentation-btn button {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, var(--brown), var(--brown-dark));
+            border: 3px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .presentation-btn button:hover {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--brown-dark);
+            transform: scale(1.05);
+        }
+
+        /* ==================== APRESENTAÇÃO ==================== */
+        #presentation {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0f0a 0%, #2c1810 50%, #3d2418 100%);
+            z-index: 9999;
+        }
+
+        #presentation.active { display: block; }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 50px;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(212, 168, 67, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(166, 124, 0, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(44, 24, 16, 0.97), rgba(92, 61, 46, 0.92)),
+                url('pergaminho.png') center/cover;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        /* Decoração de cantos */
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid rgba(212, 168, 67, 0.2);
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+
+        .slide.active::after {
+            opacity: 1;
+        }
+
+        .slide-image {
+            max-width: 85%;
+            max-height: 32vh;
+            border-radius: 12px;
+            box-shadow: 
+                0 15px 50px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(212, 168, 67, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+            border: 4px solid var(--gold-dark);
+            object-fit: cover;
+            transform: translateY(30px) scale(0.9);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+            filter: sepia(10%) contrast(1.05);
+        }
+
+        .slide.active .slide-image {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .slide-image:hover {
+            transform: scale(1.02) !important;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.7),
+                0 0 30px rgba(212, 168, 67, 0.3);
+            filter: sepia(5%) contrast(1.1);
+        }
+
+        .slide h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            color: var(--gold);
+            text-shadow: 
+                0 2px 4px var(--black),
+                0 0 30px rgba(212, 168, 67, 0.3);
+            margin-bottom: 20px;
+            letter-spacing: 0.15em;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+            position: relative;
+        }
+
+        .slide h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transition: width 0.8s ease 0.6s;
+        }
+
+        .slide.active h1 {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide.active h1::after {
+            width: 60%;
+        }
+
+        .slide-content {
+            max-width: 900px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
+        }
+
+        .slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .slide-content p {
+            font-size: clamp(1rem, 2.2vw, 1.25rem);
+            line-height: 1.8;
+            color: var(--beige);
+            margin-bottom: 12px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide-content ul {
+            list-style: none;
+            text-align: left;
+        }
+
+        .slide-content li {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            line-height: 1.7;
+            color: var(--beige);
+            margin-bottom: 12px;
+            padding-left: 35px;
+            position: relative;
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .slide.active .slide-content li {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .slide.active .slide-content li:nth-child(1) { transition-delay: 0.5s; }
+        .slide.active .slide-content li:nth-child(2) { transition-delay: 0.6s; }
+        .slide.active .slide-content li:nth-child(3) { transition-delay: 0.7s; }
+        .slide.active .slide-content li:nth-child(4) { transition-delay: 0.8s; }
+        .slide.active .slide-content li:nth-child(5) { transition-delay: 0.9s; }
+
+        .slide-content li::before {
+            content: '⚓';
+            position: absolute;
+            left: 5px;
+            color: var(--gold);
+            font-size: 1em;
+            animation: anchorBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes anchorBounce {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(-10deg); }
+        }
+
+        .slide-content li:hover {
+            color: var(--gold-light);
+            padding-left: 40px;
+        }
+
+        .slide-content li:hover::before {
+            color: var(--gold-light);
+        }
+
+        .dual-images {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 90%;
+            margin-bottom: 25px;
+        }
+
+        .dual-images .slide-image {
+            max-width: 42%;
+            max-height: 28vh;
+        }
+
+        .dual-images .slide-image:nth-child(1) {
+            transition-delay: 0.3s;
+        }
+
+        .dual-images .slide-image:nth-child(2) {
+            transition-delay: 0.4s;
+        }
+
+        /* Efeito de brilho animado nas imagens */
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .slide-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        /* Zonas de toque */
+        .touch-zone {
+            position: fixed;
+            top: 0;
+            width: 25%;
+            height: 100%;
+            z-index: 90;
+            cursor: pointer;
+        }
+
+        .touch-zone-left { left: 0; }
+        .touch-zone-right { right: 0; }
+
+        .touch-hint-left, .touch-hint-right {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--gold);
+            opacity: 0.3;
+            z-index: 95;
+            pointer-events: none;
+        }
+
+        .touch-hint-left { left: 10px; }
+        .touch-hint-right { right: 10px; }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, rgba(44, 24, 16, 0.9), rgba(92, 61, 46, 0.9));
+            z-index: 100;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+            background-size: 200% 100%;
+            animation: progressGlow 2s ease-in-out infinite;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px rgba(212, 168, 67, 0.5);
+        }
+
+        @keyframes progressGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .slide-indicator {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.95), rgba(92, 61, 46, 0.9));
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: 2px solid var(--gold-dark);
+            box-shadow: 
+                0 5px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(212, 168, 67, 0.2);
+            z-index: 100;
+            letter-spacing: 0.1em;
+        }
+
+        .exit-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .exit-btn button {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, rgba(44, 24, 16, 0.95), rgba(92, 61, 46, 0.9));
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 5px 20px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(212, 168, 67, 0.1);
+            letter-spacing: 0.1em;
+        }
+
+        .exit-btn button:hover {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--brown-dark);
+            transform: scale(1.05);
+            box-shadow: 
+                0 8px 30px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(212, 168, 67, 0.3);
+        }
+
+        .nav-hint {
+            position: fixed;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            color: var(--beige);
+            opacity: 0.5;
+            z-index: 100;
+            text-align: center;
+            background: rgba(44, 24, 16, 0.5);
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-hint:hover {
+            opacity: 0.8;
+        }
+
+        /* ==================== RESPONSIVIDADE ==================== */
+        @media (max-width: 768px) {
+            .sun {
+                width: 40px;
+                height: 40px;
+            }
+
+            .cards-grid { grid-template-columns: 1fr; gap: 15px; }
+            .slide { padding: 40px 25px; }
+            .slide-image { max-height: 25vh; }
+            .menu-content { padding: 20px 15px; }
+            .dual-images { flex-direction: column; align-items: center; }
+            .dual-images .slide-image { max-width: 70%; max-height: 20vh; }
+            .touch-zone { width: 30%; }
+            .touch-hint-left, .touch-hint-right { font-size: 1.5rem; }
+            .nav-hint { font-size: 0.8rem; padding: 0 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .splash-title h1 { font-size: 2.5rem; }
+            .card-icon { font-size: 2rem; }
+            .card h3 { font-size: 1.2rem; }
+            .exit-btn button { padding: 8px 15px; font-size: 0.85rem; }
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--brown-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 5px; }
+
+        *:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+        /* ==================== INTEGRANTES CARDS ==================== */
+        .integrantes-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 700px;
+        }
+
+        .integrante-card {
+            background: linear-gradient(145deg, rgba(92, 61, 46, 0.9), rgba(44, 24, 16, 0.95));
+            border: 2px solid var(--gold-dark);
+            border-radius: 15px;
+            padding: 15px 25px;
+            min-width: 140px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(212, 168, 67, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .integrante-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .integrante-card:hover::before {
+            left: 100%;
+        }
+
+        .integrante-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--gold);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 25px rgba(212, 168, 67, 0.3);
+        }
+
+        .integrante-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .integrante-nome {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .integrante-card:nth-child(1) { animation: cardAppear 0.5s ease forwards 0.5s; opacity: 0; }
+        .integrante-card:nth-child(2) { animation: cardAppear 0.5s ease forwards 0.6s; opacity: 0; }
+        .integrante-card:nth-child(3) { animation: cardAppear 0.5s ease forwards 0.7s; opacity: 0; }
+        .integrante-card:nth-child(4) { animation: cardAppear 0.5s ease forwards 0.8s; opacity: 0; }
+        .integrante-card:nth-child(5) { animation: cardAppear 0.5s ease forwards 0.9s; opacity: 0; }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .integrantes-container {
+                gap: 10px;
+            }
+            .integrante-card {
+                min-width: 120px;
+                padding: 12px 18px;
+            }
+            .integrante-icon {
+                font-size: 1.5rem;
+            }
+            .integrante-nome {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- SPLASH SCREEN -->
+    <div id="splash" role="dialog">
+        <div class="ocean" id="ocean">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+
+        <div class="sun" id="sun"></div>
+
+        <div class="particles" id="particles"></div>
+
+        <div class="splash-title" id="splashTitle">
+            <h1>O Caramuru</h1>
+            <p class="author">de Santa Rita Durão</p>
+        </div>
+
+        <div class="enter-btn" id="enterBtn">
+            <button id="enterBtnAction">Entrar na Jornada</button>
+        </div>
+    </div>
+
+    <!-- MENU PRINCIPAL -->
+    <main id="menu" role="main">
+        <div class="menu-bg"></div>
+        
+        <div class="menu-content">
+            <header class="menu-header">
+                <h1>O Caramuru</h1>
+                <p>Poema épico de Santa Rita Durão - Apresentação Escolar</p>
+            </header>
+
+            <div class="cards-grid">
+                <div class="card" tabindex="0" data-slide="0" role="button">
+                    <span class="card-number">00</span>
+                    <span class="card-icon">🎓</span>
+                    <h3>Apresentação</h3>
+                    <p>Grupo e tema</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="1" role="button">
+                    <span class="card-number">01</span>
+                    <span class="card-icon">📜</span>
+                    <h3>Resumo</h3>
+                    <p>Visão geral do poema épico</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="2" role="button">
+                    <span class="card-number">02</span>
+                    <span class="card-icon">📖</span>
+                    <h3>Enredo</h3>
+                    <p>A narrativa completa</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="3" role="button">
+                    <span class="card-number">03</span>
+                    <span class="card-icon">✍️</span>
+                    <h3>Escritor</h3>
+                    <p>Santa Rita Durão</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="4" role="button">
+                    <span class="card-number">04</span>
+                    <span class="card-icon">🏷️</span>
+                    <h3>Classificação</h3>
+                    <p>Gênero e estilo literário</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="5" role="button">
+                    <span class="card-number">05</span>
+                    <span class="card-icon">🎨</span>
+                    <h3>Estética</h3>
+                    <p>Linguagem e estilo</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="6" role="button">
+                    <span class="card-number">06</span>
+                    <span class="card-icon">✨</span>
+                    <h3>Características</h3>
+                    <p>Elementos distintivos</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="7" role="button">
+                    <span class="card-number">07</span>
+                    <span class="card-icon">🎙️</span>
+                    <h3>Narrador</h3>
+                    <p>Ponto de vista narrativo</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="8" role="button">
+                    <span class="card-number">08</span>
+                    <span class="card-icon">👥</span>
+                    <h3>Personagens</h3>
+                    <p>Protagonistas e figuras</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="9" role="button">
+                    <span class="card-number">09</span>
+                    <span class="card-icon">⏳</span>
+                    <h3>Tempo</h3>
+                    <p>Contexto temporal</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="10" role="button">
+                    <span class="card-number">10</span>
+                    <span class="card-icon">🗺️</span>
+                    <h3>Espaço</h3>
+                    <p>Cenário geográfico</p>
+                </div>
+
+                <div class="card" tabindex="0" data-slide="11" role="button">
+                    <span class="card-number">11</span>
+                    <span class="card-icon">🙏</span>
+                    <h3>Obrigado</h3>
+                    <p>Agradecimento final</p>
+                </div>
+            </div>
+
+            <div class="presentation-btn">
+                <button id="startPresentation">
+                    <span>▶</span>
+                    Modo Apresentação
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODO APRESENTAÇÃO -->
+    <div id="presentation" role="dialog">
+        <div class="exit-btn">
+            <button id="exitPresentation">✕ Sair (ESC)</button>
+        </div>
+
+        <div class="touch-zone touch-zone-left" id="touchLeft"></div>
+        <div class="touch-zone touch-zone-right" id="touchRight"></div>
+        
+        <div class="touch-hint-left">◀</div>
+        <div class="touch-hint-right">▶</div>
+
+        <!-- SLIDES -->
+        <!-- SLIDE 0: APRESENTAÇÃO DO GRUPO -->
+        <div class="slide" data-index="0">
+            <img src="pergaminho.png" alt="Apresentação" class="slide-image" style="opacity: 0.3;">
+            <h1>🎓 Apresentação</h1>
+            <div class="slide-content">
+                <p style="text-align: center; font-size: 1.3em;"><strong>Tema:</strong> O Caramuru - Santa Rita Durão</p>
+                <p style="text-align: center;"><strong>Matéria:</strong> Português | <strong>Escola:</strong> Estadual São Luiz</p>
+                <div class="integrantes-container">
+                    <div class="integrante-card">
+                        <span class="integrante-icon">👤</span>
+                        <span class="integrante-nome">Alan Filipy</span>
+                    </div>
+                    <div class="integrante-card">
+                        <span class="integrante-icon">👤</span>
+                        <span class="integrante-nome">Sandriely</span>
+                    </div>
+                    <div class="integrante-card">
+                        <span class="integrante-icon">👤</span>
+                        <span class="integrante-nome">Victor Gabriel</span>
+                    </div>
+                    <div class="integrante-card">
+                        <span class="integrante-icon">👤</span>
+                        <span class="integrante-nome">Alan Gabriel</span>
+                    </div>
+                    <div class="integrante-card">
+                        <span class="integrante-icon">👤</span>
+                        <span class="integrante-nome">Yasmin Vitória</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" data-index="1">
+            <img src="naufragio.png" alt="Naufrágio" class="slide-image">
+            <h1>📜 Resumo</h1>
+            <div class="slide-content">
+                <p><strong>O Caramuru</strong> é um poema épico publicado em <strong>1781</strong> por Santa Rita Durão. Narra o naufrágio de Diogo Álvares Correia na Bahia, seu encontro com os tupinambás e o romance com <strong>Paraguaçu</strong>. Celebra a união entre europeus e indígenas, simbolizando a origem do povo brasileiro.</p>
+            </div>
+        </div>
+
+        <div class="slide" data-index="2">
+            <img src="encontro.png" alt="Encontro" class="slide-image">
+            <h1>📖 Enredo</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Naufrágio</strong> — Navio português sofre acidente na Bahia</li>
+                    <li><strong>Sobrevivência</strong> — Diogo é encontrado pelos tupinambás</li>
+                    <li><strong>Integração</strong> — Batizado como "Caramuru", vive entre nativos</li>
+                    <li><strong>Amor</strong> — Encontra Paraguaçu e se apaixonam</li>
+                    <li><strong>Mediação</strong> — Torna-se ponte entre portugueses e indígenas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-index="3">
+            <img src="santa_rita_durao.png" alt="Santa Rita Durão" class="slide-image">
+            <h1>✍️ O Escritor</h1>
+            <div class="slide-content">
+                <p><strong>Santa Rita Durão</strong> (1722-1784), jesuíta brasileiro nascido em Mariana, Minas Gerais. É considerado um dos fundadores da literatura brasileira. Escreveu <em>Caramuru</em> em 1781, poema épico que exalta a colonização portuguesa. Pertence ao movimento <strong>Arcadismo</strong> brasileiro.</p>
+            </div>
+        </div>
+
+        <div class="slide" data-index="4">
+            <img src="batismo.png" alt="Batismo" class="slide-image">
+            <h1>🏷️ Classificação</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Gênero:</strong> Poema Épico — narrativa heroica em versos</li>
+                    <li><strong>Subgênero:</strong> Épico Colonial Brasileiro</li>
+                    <li><strong>Caráter:</strong> Hagiográfico e evangelizador</li>
+                    <li><strong>Período:</strong> Arcadismo Brasileiro (século XVIII)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-index="5">
+            <img src="pergaminho.png" alt="Pergaminho" class="slide-image">
+            <h1>🎨 Estética</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Hexâmetros latinos</strong> — metro épico clássico</li>
+                    <li><strong>Multilinguismo</strong> — latim, português e tupi</li>
+                    <li><strong>Linguagem arcaica</strong> — estilo renascentista</li>
+                    <li><strong>Recursos clássicos</strong> — invocações e metáforas épicas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-index="6">
+            <img src="caravela.png" alt="Caravela" class="slide-image">
+            <h1>✨ Características</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Sincretismo cultural</strong> — fusão europeu/indígena</li>
+                    <li><strong>Finalidade evangelizadora</strong> — obra catequética</li>
+                    <li><strong>Visão paradisíaca</strong> — Brasil como Éden</li>
+                    <li><strong>Documento etnográfico</strong> — registros dos tupinambás</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-index="7">
+            <img src="mar.png" alt="Mar" class="slide-image">
+            <h1>🎙️ Narrador</h1>
+            <div class="slide-content">
+                <p><strong>Narrador Onisciente</strong> em terceira pessoa, conhece todos os pensamentos dos personagens. A voz reflete a perspectiva <strong>jesuítica</strong>, interpretando eventos sob a ótica da Providência Divina e da missão evangelizadora.</p>
+            </div>
+        </div>
+
+        <div class="slide" data-index="8">
+            <div class="dual-images">
+                <img src="caramuru.png" alt="Caramuru" class="slide-image">
+                <img src="paraguacu.png" alt="Paraguaçu" class="slide-image">
+            </div>
+            <h1>👥 Personagens</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Caramuru</strong> — Diogo Álvares, náufrago português</li>
+                    <li><strong>Paraguaçu</strong> — índia tupinambá, sua esposa</li>
+                    <li><strong>Taparica</strong> — cacique, pai de Paraguaçu</li>
+                    <li><strong>Jesuítas</strong> — missionários evangelizadores</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slide" data-index="9">
+            <img src="mapa_brasil.png" alt="Mapa" class="slide-image">
+            <h1>⏳ Tempo</h1>
+            <div class="slide-content">
+                <p><strong>Século XVI</strong> (1510-1530), período inicial da colonização portuguesa. Narrativa em ordem <strong>cronológica linear</strong>. Reflete o Brasil recém-descoberto, fronteira incerta habitada por povos indígenas.</p>
+            </div>
+        </div>
+
+        <div class="slide" data-index="10">
+            <img src="bahia.png" alt="Bahia" class="slide-image">
+            <h1>🗺️ Espaço</h1>
+            <div class="slide-content">
+                <ul>
+                    <li><strong>Bahia</strong> — Baía de Todos os Santos, cenário principal</li>
+                    <li><strong>O Mar</strong> — caminho dos portugueses, cenário do naufrágio</li>
+                    <li><strong>Aldeia indígena</strong> — comunidade tupinambá</li>
+                    <li><strong>França</strong> — destino da viagem de Paraguaçu</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SLIDE 11: AGRADECIMENTO -->
+        <div class="slide" data-index="11">
+            <img src="pergaminho.png" alt="Obrigado" class="slide-image" style="opacity: 0.2;">
+            <h1>🙏 Obrigado!</h1>
+            <div class="slide-content">
+                <p style="text-align: center; font-size: 1.4em; line-height: 2;">Obrigado pela Atenção de todos,</p>
+                <p style="text-align: center; font-size: 1.4em; line-height: 2;">esperamos um <strong style="color: #d4a843;">10</strong> desse trabalho!</p>
+                <p style="text-align: center; margin-top: 30px; font-size: 1.2em;">📚 O Caramuru - Santa Rita Durão</p>
+                <p style="text-align: center; font-size: 1em;">Escola Estadual São Luiz - Português</p>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div class="slide-indicator" id="slideIndicator">1 / 12</div>
+
+        <div class="nav-hint">← → para navegar | Toque nas laterais | ESC para sair</div>
+    </div>
+
+    <script>
+        // ==================== VARIÁVEIS GLOBAIS ====================
+        let currentSlide = 0;
+        const totalSlides = 12;
+
+        // ==================== SPLASH SCREEN ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            const splash = document.getElementById('splash');
+            const ocean = document.getElementById('ocean');
+            const sun = document.getElementById('sun');
+            const splashTitle = document.getElementById('splashTitle');
+            const enterBtn = document.getElementById('enterBtn');
+            const particles = document.getElementById('particles');
+            const menu = document.getElementById('menu');
+
+            // Criar partículas
+            function createParticles() {
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    particle.style.animationDelay = Math.random() * 5 + 's';
+                    particle.style.width = (Math.random() * 4 + 2) + 'px';
+                    particle.style.height = particle.style.width;
+                    particles.appendChild(particle);
+                }
+            }
+
+            createParticles();
+
+            // Sequência de animação
+            setTimeout(() => ocean.classList.add('visible'), 500);
+            setTimeout(() => sun.classList.add('visible'), 1000);
+            setTimeout(() => splashTitle.classList.add('visible'), 3000);
+            setTimeout(() => enterBtn.classList.add('visible'), 5000);
+
+            // Botão entrar
+            document.getElementById('enterBtnAction').addEventListener('click', function() {
+                splash.classList.add('hidden');
+                setTimeout(() => menu.classList.add('active'), 500);
+            });
+
+            // ==================== MENU ====================
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    startPresentation(parseInt(this.dataset.slide));
+                });
+
+                card.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        startPresentation(parseInt(this.dataset.slide));
+                    }
+                });
+            });
+
+            document.getElementById('startPresentation').addEventListener('click', function() {
+                startPresentation(0);
+            });
+
+            // ==================== APRESENTAÇÃO ====================
+            const presentation = document.getElementById('presentation');
+            const slides = document.querySelectorAll('.slide');
+            const progressFill = document.getElementById('progressFill');
+            const slideIndicator = document.getElementById('slideIndicator');
+            const touchLeft = document.getElementById('touchLeft');
+            const touchRight = document.getElementById('touchRight');
+
+            function startPresentation(startIndex = 0) {
+                currentSlide = startIndex;
+                presentation.classList.add('active');
+                showSlide(currentSlide);
+                requestFullscreen();
+            }
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) slide.classList.add('active');
+                });
+                progressFill.style.width = ((index + 1) / totalSlides) * 100 + '%';
+                slideIndicator.textContent = `${index + 1} / ${totalSlides}`;
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    showSlide(currentSlide);
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    showSlide(currentSlide);
+                }
+            }
+
+            function exitPresentation() {
+                presentation.classList.remove('active');
+                exitFullscreen();
+            }
+
+            function requestFullscreen() {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) elem.requestFullscreen();
+                else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+                else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
+            }
+
+            function exitFullscreen() {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                else if (document.msExitFullscreen) document.msExitFullscreen();
+            }
+
+            // Navegação por teclado
+            document.addEventListener('keydown', function(e) {
+                if (!presentation.classList.contains('active')) return;
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case 'ArrowDown':
+                        nextSlide();
+                        break;
+                    case 'ArrowLeft':
+                    case 'ArrowUp':
+                        prevSlide();
+                        break;
+                    case 'Escape':
+                        exitPresentation();
+                        break;
+                }
+            });
+
+            // ==================== NAVEGAÇÃO POR TOQUE ====================
+            touchLeft.addEventListener('click', prevSlide);
+            touchLeft.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                prevSlide();
+            });
+
+            touchRight.addEventListener('click', nextSlide);
+            touchRight.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                nextSlide();
+            });
+
+            // Swipe
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            presentation.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            presentation.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+            }
+
+            // Botão sair
+            document.getElementById('exitPresentation').addEventListener('click', exitPresentation);
+
+            // Pré-carregamento
+            document.querySelectorAll('img').forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) new Image().src = src;
+            });
+        });
+    </script>
+</body>
+</html>
